@@ -68,16 +68,8 @@ export default function FooterSection() {
                   Terms of Service
                 </a>
               </li>
-              <li>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  Cookie Policy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  GDPR
-                </a>
-              </li>
+              
+              
             </ul>
           </div>
         </div>
