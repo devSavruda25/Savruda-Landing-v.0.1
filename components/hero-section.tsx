@@ -144,12 +144,12 @@ export default function HeroSection() {
               {/* Main Hero Image Container */}
               <div className="relative bg-background/10 backdrop-blur-sm rounded-3xl p-4 border border-white/20">
                 <Image
-  src={hero1}
-  alt="Innovation Technology"
-  width={500}
-  height={600}
-  className="w-full h-auto rounded-2xl shadow-2xl relative z-10"
-/>
+                  src="https://res.cloudinary.com/dttagqqne/image/upload/v1750234376/hero1_osvchm.jpg"
+                  alt="Innovation Technology"
+                  width={500}
+                  height={600}
+                  className="w-full h-auto rounded-2xl shadow-2xl relative z-10"
+                />
 
               </div>
 

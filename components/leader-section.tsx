@@ -4,14 +4,13 @@ import { useEffect, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Linkedin, Twitter, Mail } from "lucide-react"
+import Image from "next/image"
 
 const leaders = [
   {
     name: "Dadasaheb S. Shendage",
-    title: "Founder & CEO",
-    bio: "Visionary leader with 15+ years in enterprise software development and AI research. Former VP of Engineering at Google, holds PhD in Computer Science from Stanford.",
-    image: "/placeholder.svg?height=400&width=400",
-    achievements: [""],
+    title: " Founder & Visionary",
+    image: "https://res.cloudinary.com/dttagqqne/image/upload/v1750234376/pic2_nhoook.jpg",
     social: {
       linkedin: "https://linkedin.com",
       twitter: "https://twitter.com",
@@ -20,10 +19,10 @@ const leaders = [
   },
   {
     name: "Savita D. Shendage",
-    title: "Co-Founder",
-    bio: "Strategic financial expert with extensive experience in scaling tech startups. Former CFO at three successful exits, MBA from Wharton Business School.",
-    image: "/placeholder.svg?height=400&width=400",
-    achievements: [""],
+    title: "Partner – Strategic Development",
+    
+    image: "https://res.cloudinary.com/dttagqqne/image/upload/v1750234379/pic3_fg6sqx.png",
+
     social: {
      linkedin: "https://linkedin.com",
       twitter: "https://twitter.com",
@@ -31,11 +30,9 @@ const leaders = [
     },
   },
   {
-    name: "Omkar D. Shendage",
-    title: "Founder- Brotein Bistro",
-    bio: "Technical innovator specializing in cloud architecture and machine learning systems. Former Principal Engineer at AWS, published 50+ research papers.",
-    image: "/placeholder.svg?height=400&width=400",
-    achievements: [],
+    name: "Mr.Omkar D. Shendage",
+    title: "CEO & Founder– Operations & Innovation",
+    image:"https://res.cloudinary.com/dttagqqne/image/upload/v1750234377/pic1_rryh7z.jpg",
     social: {
       linkedin: "https://linkedin.com",
       twitter: "https://twitter.com",
@@ -116,15 +113,15 @@ export default function LeaderSection() {
                       <p className="text-primary font-semibold">{leader.title}</p>
                     </div>
 
-                    <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{leader.bio}</p>
+                    {/* <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{leader.bio}</p> */}
 
-                    <div className="flex flex-wrap gap-2">
+                    {/* <div className="flex flex-wrap gap-2">
                       {leader.achievements.map((achievement) => (
                         <Badge key={achievement} variant="secondary" className="text-xs">
                           {achievement}
                         </Badge>
                       ))}
-                    </div>
+                    </div> */}
                   </div>
                 </CardContent>
               </Card>

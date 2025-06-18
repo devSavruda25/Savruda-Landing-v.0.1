@@ -39,8 +39,8 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0 flex items-center">
             <Image
-              src={logo}
-              alt="TechFlow Logo"
+              src="https://res.cloudinary.com/dttagqqne/image/upload/v1750234377/logo-removebg_rqpy9w.png"
+              alt=" Logo"
               width={50}
               height={50}
               className="h-12 w-auto"

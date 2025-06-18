@@ -4,8 +4,8 @@ import { useEffect, useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ExternalLink, Smartphone, ShoppingCart, GraduationCap, SproutIcon, Salad } from "lucide-react"
-import Image from "next/image"
-import brotein from "@/public/broteinProfile.png"
+import Link from "next/link"
+
 
 
 const ventures = [
@@ -13,21 +13,20 @@ const ventures = [
     name: "KENSO AGRO INDUSTRIES",
     type: "AGRO INDUSTRIES",
     description:
-      "Kenso Agro Industries - Manufacturer of dry magnesium sulphate & other products since 2016 in Nashik, Maharashtra.",
-    Image: {brotein},
+      "Kenso Agro Pvt. Ltd. is an agrochemical manufacturing company based in Nashik, Maharashtra. Established in 2011, it specializes in producing fertilizers, pesticides, soil conditioners, and organic manure. The company operates from its facility located at Gat No. 231, Khatwad Phata, Pimpalnare, Nashik – 422202. Kenso Agro Pvt. Ltd. is registered as a private limited company and is classified under the agriculture and allied activities sector. The company is active and continues to serve the agricultural community with its products.",
+    image: "https://res.cloudinary.com/dttagqqne/image/upload/v1750234377/kensoProfile_jhkzhs.png",
     icon: SproutIcon,
-    tags: ["Cloud Integration", "Real-time Sync", "Enterprise Ready"],
     color: "from-green-500 to-teal-600",
-    link: "#",
+    link: "https://www.indiamart.com/kenso-agro-chemical/aboutus.html?srsltid=AfmBOoqixkinl0NooiAEl8036UiYfJQn4vBantzc3B-KBPFGNN44_7hU",
   },
   {
     name: "BROTEIN BISTRO",
-    type: "Mobile Development Agency",
+    type: "Protein-Rich Fitness Café in Nashik",
     description:
-      "Welcome to Broteing Bistro, where flavor meets passion! We are a culinary hub that brings together a diverse range of cuisines under one roof, offering an unforgettable diing experience for every food lover.",
-    image: "/placeholder.svg?height=300&width=400",
+      "Brotein Bistro is a health-focused café in Nashik, offering a diverse menu that combines taste with nutritional value. Their offerings include protein-rich meal bowls, whole wheat pizzas, wraps, sandwiches, and shakes, catering to health-conscious individuals. The bistro provides both dine-in and delivery options, with outlets in Parijat Nagar and College Road. It's a popular choice for those seeking wholesome meals without compromising on flavor.",
+    image: "https://res.cloudinary.com/dttagqqne/image/upload/v1750235181/bb_cjmexj.jpg",
     icon: Salad,
-    tags: ["iOS Development", "Android Apps", "Cross-platform"],
+    // tags: ["iOS Development", "Android Apps", "Cross-platform"],
     color: "from-green-500 to-teal-600",
     link: "https://broteinbistro.com/",
   }
@@ -56,9 +55,8 @@ export default function VenturesSection() {
     <section id="ventures" className="py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div
-          className={`transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
+          className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            }`}
         >
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">Our Ventures</h2>
@@ -71,9 +69,8 @@ export default function VenturesSection() {
             {ventures.map((venture, index) => (
               <Card
                 key={venture.name}
-                className={`group overflow-hidden hover:shadow-xl transition-all duration-500 ${
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-                }`}
+                className={`group overflow-hidden hover:shadow-xl transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                  }`}
                 style={{ transitionDelay: `${index * 200}ms` }}
               >
                 <div className="relative">
@@ -104,18 +101,22 @@ export default function VenturesSection() {
                 <CardContent>
                   <CardDescription className="text-base mb-4 leading-relaxed">{venture.description}</CardDescription>
 
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  {/* <div className="flex flex-wrap gap-2 mb-6">
                     {venture.tags.map((tag) => (
                       <span key={tag} className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
                         {tag}
                       </span>
                     ))}
-                  </div>
+                  </div> */}
 
-                  <Button className="w-full group-hover:bg-primary/90 transition-colors">
-                    Visit {venture.name}
-                    <ExternalLink className="ml-2 h-4 w-4" />
-                  </Button>
+                  <Link href={venture.link} target="_blank" rel="noopener noreferrer">
+                    <Button asChild className="w-full group-hover:bg-primary/90 transition-colors">
+                      <span>
+                        Visit {venture.name}
+                        <ExternalLink className="ml-2 h-4 w-4" />
+                      </span>
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             ))}

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "Savruda Innovation - IT Startup Solutions",
   description:
     "Empowering businesses with cutting-edge IT solutions, cloud infrastructure, and AI-driven innovations.",
-  generator: "v0.dev",
+  
 }
 
 export default function RootLayout({
