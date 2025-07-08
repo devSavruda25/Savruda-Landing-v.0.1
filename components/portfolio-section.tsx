@@ -4,52 +4,18 @@ import { useEffect, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ExternalLink } from "lucide-react"
-
+import Link from "next/link"
 const projects = [
   {
-    title: "E-Commerce Platform Redesign",
+    title: " Brotein Bistro Redesign",
     description:
-      "Complete overhaul of a major retail platform, improving performance by 40% and user engagement by 60%.",
-    image: "/placeholder.svg?height=250&width=400",
-    tags: ["React", "Node.js", "AWS"],
+      "The Brotein Bistro website redesign aims to elevate the online presence of Nashik’s premier protein-rich fitness café. The objective is to create a visually compelling, fast-loading, and mobile-first website that resonates with health-conscious audiences while improving usability, online ordering, and brand storytelling.",
+    image: "https://res.cloudinary.com/dttagqqne/image/upload/v1750235181/bb_cjmexj.jpg",
+    tags: ["NextJs"],
+    link: "https://broteinbistro.com/",
     category: "Web Development",
   },
-  {
-    title: "AI-Powered Analytics Dashboard",
-    description: "Real-time business intelligence platform with machine learning insights for data-driven decisions.",
-    image: "/placeholder.svg?height=250&width=400",
-    tags: ["Python", "TensorFlow", "React"],
-    category: "AI Integration",
-  },
-  {
-    title: "Cloud Migration Project",
-    description: "Seamless migration of legacy systems to AWS, reducing infrastructure costs by 35%.",
-    image: "/placeholder.svg?height=250&width=400",
-    tags: ["AWS", "Docker", "Kubernetes"],
-    category: "Cloud Solutions",
-  },
-  {
-    title: "Mobile Banking App",
-    description:
-      "Secure and intuitive mobile banking solution with biometric authentication and real-time transactions.",
-    image: "/placeholder.svg?height=250&width=400",
-    tags: ["React Native", "Node.js", "MongoDB"],
-    category: "Mobile Development",
-  },
-  {
-    title: "DevOps Automation Suite",
-    description: "Complete CI/CD pipeline implementation reducing deployment time from hours to minutes.",
-    image: "/placeholder.svg?height=250&width=400",
-    tags: ["Jenkins", "Docker", "Terraform"],
-    category: "DevOps",
-  },
-  {
-    title: "SaaS Customer Portal",
-    description: "Self-service customer portal with integrated billing, support, and analytics capabilities.",
-    image: "/placeholder.svg?height=250&width=400",
-    tags: ["Vue.js", "Laravel", "Stripe"],
-    category: "SaaS Development",
-  },
+  
 ]
 
 export default function PortfolioSection() {
@@ -102,7 +68,8 @@ export default function PortfolioSection() {
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <ExternalLink className="h-8 w-8 text-white" />
+                  <Link href={project.link} target="_blank" className="flex items-center justify-center h-full w-full">
+                    <ExternalLink className="h-8 w-8 text-white" /></Link>
                   </div>
                   <Badge className="absolute top-4 left-4">{project.category}</Badge>
                 </div>
