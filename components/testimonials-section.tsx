@@ -91,7 +91,7 @@ export default function TestimonialsSection() {
                   <blockquote className="text-muted-foreground mb-6 italic">"{testimonial.content}"</blockquote>
                   <div className="flex items-center">
                     <img
-                      src={testimonial.avatar || "/placeholder.svg"}
+                      src={testimonial.avatar }
                       alt={testimonial.name}
                       className="w-12 h-12 rounded-full object-cover mr-4"
                     />

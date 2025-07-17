@@ -10,21 +10,21 @@ const services = [
     title: "Web Development",
     description: "Modern, responsive websites and web applications built with the latest technologies.",
   },
-  {
-    icon: Server,
-    title: "DevOps Solutions",
-    description: "Streamlined development workflows, CI/CD pipelines, and infrastructure automation.",
-  },
-  {
-    icon: Cloud,
-    title: "Cloud Solutions",
-    description: "Scalable cloud infrastructure, migration services, and cloud-native application development.",
-  },
-  {
-    icon: Brain,
-    title: "AI Integration",
-    description: "Intelligent automation, machine learning models, and AI-powered business solutions.",
-  },
+  // {
+  //   icon: Server,
+  //   title: "DevOps Solutions",
+  //   description: "Streamlined development workflows, CI/CD pipelines, and infrastructure automation.",
+  // },
+  // {
+  //   icon: Cloud,
+  //   title: "Cloud Solutions",
+  //   description: "Scalable cloud infrastructure, migration services, and cloud-native application development.",
+  // },
+  // {
+  //   icon: Brain,
+  //   title: "AI Integration",
+  //   description: "Intelligent automation, machine learning models, and AI-powered business solutions.",
+  // },
   {
     icon: Settings,
     title: "SaaS Consulting",

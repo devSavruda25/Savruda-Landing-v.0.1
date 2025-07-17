@@ -19,6 +19,10 @@ import AIAssistant from "@/components/ai-assistant"
 
 export default function LandingPage() {
   useEffect(() => {
+    // console.log(
+    //   "%c👨‍💻 Designed by Prathamesh Devrukhakar\n📸 Instagram: https://instagram.com/prathamesh_d_1",
+    //   "color: #ffff05; font-size: 13px; font-family: monospace;"
+    // );
     // Smooth scrolling for anchor links
     const handleSmoothScroll = (e: Event) => {
       const target = e.target as HTMLAnchorElement

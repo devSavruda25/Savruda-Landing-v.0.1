@@ -1,6 +1,5 @@
 "use client"
-
-import { Github, Linkedin, Twitter, Mail } from "lucide-react"
+import {  Linkedin, Twitter, Mail } from "lucide-react"
 
 export default function FooterSection() {
   return (
@@ -15,10 +14,37 @@ export default function FooterSection() {
               transform ideas into reality.
             </p>
             <div className="flex space-x-4">
-              <Github className="h-6 w-6 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
-              <Linkedin className="h-6 w-6 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
-              <Twitter className="h-6 w-6 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
-              <Mail className="h-6 w-6 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
+              <a
+                href="https://in.linkedin.com/company/savruda-in"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Linkedin className="h-6 w-6 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
+              </a>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Twitter className="h-6 w-6 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
+              </a>
+              <a
+                href="developer.savruda@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Mail className="h-6 w-6 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
+              </a>
+              {/* Optional Github icon */}
+              {/* 
+              <a
+                href="https://github.com/savruda"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github className="h-6 w-6 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
+              </a> 
+              */}
             </div>
           </div>
 
@@ -59,17 +85,15 @@ export default function FooterSection() {
             <h4 className="font-semibold mb-4">Legal</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                <a href="/privacy-policy" className="text-muted-foreground hover:text-primary transition-colors">
                   Privacy Policy
                 </a>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                <a href="/terms-of-service" className="text-muted-foreground hover:text-primary transition-colors">
                   Terms of Service
                 </a>
               </li>
-              
-              
             </ul>
           </div>
         </div>

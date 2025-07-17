@@ -75,7 +75,7 @@ export default function VenturesSection() {
               >
                 <div className="relative">
                   <img
-                    src={venture.image || "/placeholder.svg"}
+                    src={venture.image}
                     alt={venture.name}
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                   />

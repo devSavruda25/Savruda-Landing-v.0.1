@@ -63,7 +63,7 @@ export default function PortfolioSection() {
               >
                 <div className="relative overflow-hidden">
                   <img
-                    src={project.image || "/placeholder.svg"}
+                    src={project.image}
                     alt={project.title}
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                   />

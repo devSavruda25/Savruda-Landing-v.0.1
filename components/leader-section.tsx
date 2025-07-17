@@ -87,7 +87,7 @@ export default function LeaderSection() {
                 <CardContent className="p-0">
                   <div className="relative overflow-hidden">
                     <img
-                      src={leader.image || "/placeholder.svg"}
+                      src={leader.image}
                       alt={leader.name}
                       className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300"
                     />

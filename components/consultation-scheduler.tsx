@@ -20,33 +20,15 @@ interface ConsultationSchedulerProps {
 }
 
 const timeSlots = [
-  "09:00 AM",
-  "09:30 AM",
-  "10:00 AM",
-  "10:30 AM",
-  "11:00 AM",
-  "11:30 AM",
-  "12:00 PM",
-  "12:30 PM",
-  "01:00 PM",
-  "01:30 PM",
-  "02:00 PM",
-  "02:30 PM",
-  "03:00 PM",
-  "03:30 PM",
-  "04:00 PM",
-  "04:30 PM",
-  "05:00 PM",
+  "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM",
+  "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM",
+  "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM",
+  "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM",
 ]
 
 const serviceTypes = [
-  "Web Development",
-  "DevOps Solutions",
-  "Cloud Solutions",
-  "AI Integration",
-  "SaaS Consulting",
-  "Custom Software",
-  "General Consultation",
+  "Web Development", "DevOps Solutions", "Cloud Solutions",
+  "AI Integration", "SaaS Consulting", "Custom Software", "General Consultation",
 ]
 
 export function ConsultationScheduler({ isOpen, onClose }: ConsultationSchedulerProps) {
@@ -70,13 +52,6 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
 
   const handleDateSelect = (date: Date | undefined) => {
     setFormData((prev) => ({ ...prev, date }))
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission here
-    console.log("Consultation scheduled:", formData)
-    setStep(4) // Show confirmation
   }
 
   const resetForm = () => {
@@ -121,7 +96,7 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
           </div>
         </DialogHeader>
 
-        {/* Progress Indicator */}
+        {/* Progress */}
         <div className="flex items-center justify-center space-x-2 mb-6">
           {[1, 2, 3].map((stepNumber) => (
             <div key={stepNumber} className="flex items-center">
@@ -137,8 +112,12 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
           ))}
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Step 1: Contact Information */}
+        <form
+          action="https://formsubmit.co/developer.savruda@gmail.com"
+          method="POST"
+          className="space-y-6"
+        >
+          {/* Step 1 */}
           {step === 1 && (
             <div className="space-y-4">
               <div className="text-center mb-6">
@@ -149,54 +128,31 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="name">Full Name *</Label>
-                  <Input
-                    id="name"
-                    value={formData.name}
-                    onChange={(e) => handleInputChange("name", e.target.value)}
-                    required
-                  />
+                  <Input id="name" name="name" value={formData.name} onChange={(e) => handleInputChange("name", e.target.value)} required />
                 </div>
                 <div>
                   <Label htmlFor="email">Email Address *</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => handleInputChange("email", e.target.value)}
-                    required
-                  />
+                  <Input id="email" type="email" name="email" value={formData.email} onChange={(e) => handleInputChange("email", e.target.value)} required />
                 </div>
               </div>
 
               <div>
                 <Label htmlFor="company">Company Name *</Label>
-                <Input
-                  id="company"
-                  value={formData.company}
-                  onChange={(e) => handleInputChange("company", e.target.value)}
-                  required
-                />
+                <Input id="company" name="company" value={formData.company} onChange={(e) => handleInputChange("company", e.target.value)} required />
               </div>
 
               <div>
                 <Label htmlFor="phone">Phone Number</Label>
-                <Input
-                  id="phone"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={(e) => handleInputChange("phone", e.target.value)}
-                />
+                <Input id="phone" name="phone" type="tel" value={formData.phone} onChange={(e) => handleInputChange("phone", e.target.value)} />
               </div>
 
               <div className="flex justify-end">
-                <Button type="button" onClick={() => setStep(2)} disabled={!isStep1Valid}>
-                  Next: Project Details
-                </Button>
+                <Button type="button" onClick={() => setStep(2)} disabled={!isStep1Valid}>Next: Project Details</Button>
               </div>
             </div>
           )}
 
-          {/* Step 2: Project Information */}
+          {/* Step 2 */}
           {step === 2 && (
             <div className="space-y-4">
               <div className="text-center mb-6">
@@ -212,9 +168,7 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
                   </SelectTrigger>
                   <SelectContent>
                     {serviceTypes.map((service) => (
-                      <SelectItem key={service} value={service}>
-                        {service}
-                      </SelectItem>
+                      <SelectItem key={service} value={service}>{service}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -224,11 +178,11 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
                 <Label htmlFor="projectDescription">Project Description *</Label>
                 <Textarea
                   id="projectDescription"
+                  name="projectDescription"
                   value={formData.projectDescription}
                   onChange={(e) => handleInputChange("projectDescription", e.target.value)}
-                  placeholder="Please describe your project, goals, and any specific requirements..."
-                  rows={4}
                   required
+                  rows={4}
                 />
               </div>
 
@@ -236,9 +190,7 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
                 <div>
                   <Label htmlFor="budget">Estimated Budget</Label>
                   <Select value={formData.budget} onValueChange={(value) => handleInputChange("budget", value)}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select budget range" />
-                    </SelectTrigger>
+                    <SelectTrigger><SelectValue placeholder="Select budget range" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="under-10k">Under $10,000</SelectItem>
                       <SelectItem value="10k-25k">$10,000 - $25,000</SelectItem>
@@ -252,9 +204,7 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
                 <div>
                   <Label htmlFor="timeline">Project Timeline</Label>
                   <Select value={formData.timeline} onValueChange={(value) => handleInputChange("timeline", value)}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select timeline" />
-                    </SelectTrigger>
+                    <SelectTrigger><SelectValue placeholder="Select timeline" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="asap">ASAP</SelectItem>
                       <SelectItem value="1-3months">1-3 months</SelectItem>
@@ -267,17 +217,13 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
               </div>
 
               <div className="flex justify-between">
-                <Button type="button" variant="outline" onClick={() => setStep(1)}>
-                  Back
-                </Button>
-                <Button type="button" onClick={() => setStep(3)} disabled={!isStep2Valid}>
-                  Next: Schedule Time
-                </Button>
+                <Button type="button" variant="outline" onClick={() => setStep(1)}>Back</Button>
+                <Button type="button" onClick={() => setStep(3)} disabled={!isStep2Valid}>Next: Schedule Time</Button>
               </div>
             </div>
           )}
 
-          {/* Step 3: Schedule Date & Time */}
+          {/* Step 3 */}
           {step === 3 && (
             <div className="space-y-4">
               <div className="text-center mb-6">
@@ -310,16 +256,11 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
                 <div>
                   <Label>Select Time *</Label>
                   <Select value={formData.time} onValueChange={(value) => handleInputChange("time", value)}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Choose time slot" />
-                    </SelectTrigger>
+                    <SelectTrigger><SelectValue placeholder="Choose time slot" /></SelectTrigger>
                     <SelectContent>
                       {timeSlots.map((time) => (
                         <SelectItem key={time} value={time}>
-                          <div className="flex items-center">
-                            <Clock className="mr-2 h-4 w-4" />
-                            {time}
-                          </div>
+                          <div className="flex items-center"><Clock className="mr-2 h-4 w-4" />{time}</div>
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -327,88 +268,20 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
                 </div>
               </div>
 
-              {formData.date && formData.time && (
-                <div className="p-4 bg-muted rounded-lg">
-                  <h4 className="font-semibold mb-2">Consultation Summary</h4>
-                  <div className="space-y-1 text-sm">
-                    <p>
-                      <strong>Date:</strong> {format(formData.date, "EEEE, MMMM do, yyyy")}
-                    </p>
-                    <p>
-                      <strong>Time:</strong> {formData.time} (60 minutes)
-                    </p>
-                    <p>
-                      <strong>Service:</strong> {formData.serviceType}
-                    </p>
-                    <p>
-                      <strong>Format:</strong> Video call (Google Meet link will be sent)
-                    </p>
-                  </div>
-                </div>
-              )}
+              {/* Hidden Inputs */}
+              <input type="hidden" name="serviceType" value={formData.serviceType} />
+              <input type="hidden" name="projectDescription" value={formData.projectDescription} />
+              <input type="hidden" name="date" value={formData.date ? format(formData.date, "yyyy-MM-dd") : ""} />
+              <input type="hidden" name="time" value={formData.time} />
+              <input type="hidden" name="budget" value={formData.budget} />
+              <input type="hidden" name="timeline" value={formData.timeline} />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_autoresponse" value="Thanks for scheduling! We’ll get back to you soon." />
 
               <div className="flex justify-between">
-                <Button type="button" variant="outline" onClick={() => setStep(2)}>
-                  Back
-                </Button>
-                <Button type="submit" disabled={!isStep3Valid} className="bg-primary hover:bg-primary/90">
-                  Schedule Consultation
-                </Button>
-              </div>
-            </div>
-          )}
-
-          {/* Step 4: Confirmation */}
-          {step === 4 && (
-            <div className="text-center space-y-6">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                <CheckCircle className="h-8 w-8 text-green-600" />
-              </div>
-
-              <div>
-                <h3 className="text-xl font-semibold text-green-600 mb-2">Consultation Scheduled!</h3>
-                <p className="text-muted-foreground">
-                  Thank you for scheduling a consultation with TechFlow. We're excited to discuss your project!
-                </p>
-              </div>
-
-              <div className="p-4 bg-muted rounded-lg text-left">
-                <h4 className="font-semibold mb-3">What happens next?</h4>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-start">
-                    <Badge variant="outline" className="mr-2 mt-0.5">
-                      1
-                    </Badge>
-                    You'll receive a confirmation email with meeting details
-                  </li>
-                  <li className="flex items-start">
-                    <Badge variant="outline" className="mr-2 mt-0.5">
-                      2
-                    </Badge>
-                    A Google Meet link will be sent 24 hours before the meeting
-                  </li>
-                  <li className="flex items-start">
-                    <Badge variant="outline" className="mr-2 mt-0.5">
-                      3
-                    </Badge>
-                    Our team will review your project details beforehand
-                  </li>
-                  <li className="flex items-start">
-                    <Badge variant="outline" className="mr-2 mt-0.5">
-                      4
-                    </Badge>
-                    We'll provide a detailed proposal within 48 hours after the call
-                  </li>
-                </ul>
-              </div>
-
-              <div className="space-y-3">
-                <Button onClick={handleClose} className="w-full">
-                  Close
-                </Button>
-                <Button variant="outline" onClick={() => setStep(1)} className="w-full">
-                  Schedule Another Consultation
-                </Button>
+                <Button type="button" variant="outline" onClick={() => setStep(2)}>Back</Button>
+                <Button type="submit" disabled={!isStep3Valid}>Schedule Consultation</Button>
               </div>
             </div>
           )}

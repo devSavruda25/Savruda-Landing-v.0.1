@@ -6,53 +6,30 @@ import { Badge } from "@/components/ui/badge"
 
 const teamMembers = [
   {
-    name: "Alex Thompson",
-    title: "Lead Developer",
+    name: "Miss.Rutuja Bafana",
+    title: "HR",
     image: "/placeholder.svg?height=250&width=250",
     skills: ["React", "Node.js", "AWS"],
   },
   {
-    name: "Lisa Park",
-    title: "DevOps Engineer",
+    name: "Mr.Prathamesh Devrukhakar",
+    title: "Full Stack Developer",
     image: "/placeholder.svg?height=250&width=250",
-    skills: ["Docker", "Kubernetes", "CI/CD"],
+    skills: ["ReactJs", "Node.js", "TypeScript", "Next.js", "Tailwind CSS", "Express.js", "MongoDB", "PostgreSQL", "Docker"],
   },
   {
-    name: "David Kumar",
+    name: "Mr.David Kumar",
     title: "UI/UX Designer",
     image: "/placeholder.svg?height=250&width=250",
     skills: ["Figma", "Design Systems", "User Research"],
   },
   {
-    name: "Rachel Green",
-    title: "Data Scientist",
+    name: "Miss. Jagruti ",
+    title: "Accountant",
     image: "/placeholder.svg?height=250&width=250",
-    skills: ["Python", "Machine Learning", "Analytics"],
+    skills: ["Accounting", "Financial Analysis", "Taxation"],
   },
-  {
-    name: "James Wilson",
-    title: "Cloud Architect",
-    image: "/placeholder.svg?height=250&width=250",
-    skills: ["AWS", "Azure", "Terraform"],
-  },
-  {
-    name: "Maria Garcia",
-    title: "Product Manager",
-    image: "/placeholder.svg?height=250&width=250",
-    skills: ["Strategy", "Agile", "Analytics"],
-  },
-  {
-    name: "Tom Anderson",
-    title: "Security Engineer",
-    image: "/placeholder.svg?height=250&width=250",
-    skills: ["Cybersecurity", "Penetration Testing", "Compliance"],
-  },
-  {
-    name: "Sophie Chen",
-    title: "QA Engineer",
-    image: "/placeholder.svg?height=250&width=250",
-    skills: ["Automation", "Testing", "Quality Assurance"],
-  },
+  
 ]
 
 export default function TeamSection() {
