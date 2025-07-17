@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -27,9 +27,19 @@ const timeSlots = [
 ]
 
 const serviceTypes = [
-  "Web Development", "DevOps Solutions", "Cloud Solutions",
-  "AI Integration", "SaaS Consulting", "Custom Software", "General Consultation",
+  "Web Development", "SaaS Consulting", "Custom Software", "General Consultation",
 ]
+
+interface FormErrors {
+  name?: string
+  email?: string
+  company?: string
+  phone?: string
+  serviceType?: string
+  projectDescription?: string
+  date?: string
+  time?: string
+}
 
 export function ConsultationScheduler({ isOpen, onClose }: ConsultationSchedulerProps) {
   const [step, setStep] = useState(1)
@@ -45,13 +55,80 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
     budget: "",
     timeline: "",
   })
+  const [errors, setErrors] = useState<FormErrors>({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const validateStep1 = () => {
+    const newErrors: FormErrors = {}
+    
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required"
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required"
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email"
+    }
+    
+    if (!formData.company.trim()) {
+      newErrors.company = "Company name is required"
+    }
+    
+    if (formData.phone && !/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test(formData.phone)) {
+      newErrors.phone = "Please enter a valid phone number"
+    }
+    
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const validateStep2 = () => {
+    const newErrors: FormErrors = {}
+    
+    if (!formData.serviceType) {
+      newErrors.serviceType = "Please select a service type"
+    }
+    
+    if (!formData.projectDescription.trim()) {
+      newErrors.projectDescription = "Project description is required"
+    } else if (formData.projectDescription.trim().length < 30) {
+      newErrors.projectDescription = "Description should be at least 30 characters"
+    }
+    
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const validateStep3 = () => {
+    const newErrors: FormErrors = {}
+    
+    if (!formData.date) {
+      newErrors.date = "Please select a date"
+    }
+    
+    if (!formData.time) {
+      newErrors.time = "Please select a time"
+    }
+    
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
+    
+    // Clear error when user starts typing
+    if (errors[field as keyof FormErrors]) {
+      setErrors(prev => ({ ...prev, [field]: undefined }))
+    }
   }
 
   const handleDateSelect = (date: Date | undefined) => {
     setFormData((prev) => ({ ...prev, date }))
+    if (errors.date) {
+      setErrors(prev => ({ ...prev, date: undefined }))
+    }
   }
 
   const resetForm = () => {
@@ -67,7 +144,9 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
       budget: "",
       timeline: "",
     })
+    setErrors({})
     setStep(1)
+    setIsSubmitting(false)
   }
 
   const handleClose = () => {
@@ -75,9 +154,35 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
     onClose()
   }
 
-  const isStep1Valid = formData.name && formData.email && formData.company
-  const isStep2Valid = formData.serviceType && formData.projectDescription
-  const isStep3Valid = formData.date && formData.time
+  const handleNextStep = () => {
+    let isValid = false
+    
+    if (step === 1) {
+      isValid = validateStep1()
+    } else if (step === 2) {
+      isValid = validateStep2()
+    }
+    
+    if (isValid) {
+      setStep(prev => prev + 1)
+    }
+  }
+
+  const handlePreviousStep = () => {
+    setStep(prev => prev - 1)
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    if (validateStep3()) {
+      setIsSubmitting(true)
+      // Form submission logic here
+      // You can access the form element and submit it programmatically
+      const form = e.currentTarget as HTMLFormElement
+      form.submit()
+    }
+  }
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
@@ -116,6 +221,7 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
           action="https://formsubmit.co/developer.savruda@gmail.com"
           method="POST"
           className="space-y-6"
+          onSubmit={handleSubmit}
         >
           {/* Step 1 */}
           {step === 1 && (
@@ -128,26 +234,61 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="name">Full Name *</Label>
-                  <Input id="name" name="name" value={formData.name} onChange={(e) => handleInputChange("name", e.target.value)} required />
+                  <Input 
+                    id="name" 
+                    name="name" 
+                    value={formData.name} 
+                    onChange={(e) => handleInputChange("name", e.target.value)} 
+                    className={errors.name ? "border-destructive" : ""}
+                  />
+                  {errors.name && <p className="text-sm text-destructive mt-1">{errors.name}</p>}
                 </div>
                 <div>
                   <Label htmlFor="email">Email Address *</Label>
-                  <Input id="email" type="email" name="email" value={formData.email} onChange={(e) => handleInputChange("email", e.target.value)} required />
+                  <Input 
+                    id="email" 
+                    type="email" 
+                    name="email" 
+                    value={formData.email} 
+                    onChange={(e) => handleInputChange("email", e.target.value)} 
+                    className={errors.email ? "border-destructive" : ""}
+                  />
+                  {errors.email && <p className="text-sm text-destructive mt-1">{errors.email}</p>}
                 </div>
               </div>
 
               <div>
                 <Label htmlFor="company">Company Name *</Label>
-                <Input id="company" name="company" value={formData.company} onChange={(e) => handleInputChange("company", e.target.value)} required />
+                <Input 
+                  id="company" 
+                  name="company" 
+                  value={formData.company} 
+                  onChange={(e) => handleInputChange("company", e.target.value)} 
+                  className={errors.company ? "border-destructive" : ""}
+                />
+                {errors.company && <p className="text-sm text-destructive mt-1">{errors.company}</p>}
               </div>
 
               <div>
                 <Label htmlFor="phone">Phone Number</Label>
-                <Input id="phone" name="phone" type="tel" value={formData.phone} onChange={(e) => handleInputChange("phone", e.target.value)} />
+                <Input 
+                  id="phone" 
+                  name="phone" 
+                  type="tel" 
+                  value={formData.phone} 
+                  onChange={(e) => handleInputChange("phone", e.target.value)} 
+                  className={errors.phone ? "border-destructive" : ""}
+                />
+                {errors.phone && <p className="text-sm text-destructive mt-1">{errors.phone}</p>}
               </div>
 
               <div className="flex justify-end">
-                <Button type="button" onClick={() => setStep(2)} disabled={!isStep1Valid}>Next: Project Details</Button>
+                <Button 
+                  type="button" 
+                  onClick={handleNextStep}
+                >
+                  Next: Project Details
+                </Button>
               </div>
             </div>
           )}
@@ -162,8 +303,11 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
 
               <div>
                 <Label htmlFor="serviceType">Service Type *</Label>
-                <Select value={formData.serviceType} onValueChange={(value) => handleInputChange("serviceType", value)}>
-                  <SelectTrigger>
+                <Select 
+                  value={formData.serviceType} 
+                  onValueChange={(value) => handleInputChange("serviceType", value)}
+                >
+                  <SelectTrigger className={errors.serviceType ? "border-destructive" : ""}>
                     <SelectValue placeholder="Select the service you're interested in" />
                   </SelectTrigger>
                   <SelectContent>
@@ -172,6 +316,7 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
                     ))}
                   </SelectContent>
                 </Select>
+                {errors.serviceType && <p className="text-sm text-destructive mt-1">{errors.serviceType}</p>}
               </div>
 
               <div>
@@ -181,9 +326,10 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
                   name="projectDescription"
                   value={formData.projectDescription}
                   onChange={(e) => handleInputChange("projectDescription", e.target.value)}
-                  required
                   rows={4}
+                  className={errors.projectDescription ? "border-destructive" : ""}
                 />
+                {errors.projectDescription && <p className="text-sm text-destructive mt-1">{errors.projectDescription}</p>}
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -192,11 +338,11 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
                   <Select value={formData.budget} onValueChange={(value) => handleInputChange("budget", value)}>
                     <SelectTrigger><SelectValue placeholder="Select budget range" /></SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="under-10k">Under $10,000</SelectItem>
-                      <SelectItem value="10k-25k">$10,000 - $25,000</SelectItem>
-                      <SelectItem value="25k-50k">$25,000 - $50,000</SelectItem>
-                      <SelectItem value="50k-100k">$50,000 - $100,000</SelectItem>
-                      <SelectItem value="over-100k">Over $100,000</SelectItem>
+                      <SelectItem value="under-10k">Under ₹10,000</SelectItem>
+                      <SelectItem value="10k-25k"> ₹10,000 -  ₹25,000</SelectItem>
+                      <SelectItem value="25k-50k"> ₹25,000 - ₹50,000</SelectItem>
+                      <SelectItem value="50k-100k">₹50,000 - ₹100,000</SelectItem>
+                      <SelectItem value="over-100k">Over ₹100,000</SelectItem>
                       <SelectItem value="discuss">Prefer to discuss</SelectItem>
                     </SelectContent>
                   </Select>
@@ -217,8 +363,8 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
               </div>
 
               <div className="flex justify-between">
-                <Button type="button" variant="outline" onClick={() => setStep(1)}>Back</Button>
-                <Button type="button" onClick={() => setStep(3)} disabled={!isStep2Valid}>Next: Schedule Time</Button>
+                <Button type="button" variant="outline" onClick={handlePreviousStep}>Back</Button>
+                <Button type="button" onClick={handleNextStep}>Next: Schedule Time</Button>
               </div>
             </div>
           )}
@@ -236,7 +382,10 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
                   <Label>Select Date *</Label>
                   <Popover>
                     <PopoverTrigger asChild>
-                      <Button variant="outline" className="w-full justify-start text-left font-normal">
+                      <Button 
+                        variant="outline" 
+                        className={`w-full justify-start text-left font-normal ${errors.date ? "border-destructive" : ""}`}
+                      >
                         <CalendarIcon className="mr-2 h-4 w-4" />
                         {formData.date ? format(formData.date, "PPP") : "Pick a date"}
                       </Button>
@@ -251,12 +400,18 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
                       />
                     </PopoverContent>
                   </Popover>
+                  {errors.date && <p className="text-sm text-destructive mt-1">{errors.date}</p>}
                 </div>
 
                 <div>
                   <Label>Select Time *</Label>
-                  <Select value={formData.time} onValueChange={(value) => handleInputChange("time", value)}>
-                    <SelectTrigger><SelectValue placeholder="Choose time slot" /></SelectTrigger>
+                  <Select 
+                    value={formData.time} 
+                    onValueChange={(value) => handleInputChange("time", value)}
+                  >
+                    <SelectTrigger className={errors.time ? "border-destructive" : ""}>
+                      <SelectValue placeholder="Choose time slot" />
+                    </SelectTrigger>
                     <SelectContent>
                       {timeSlots.map((time) => (
                         <SelectItem key={time} value={time}>
@@ -265,10 +420,15 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
                       ))}
                     </SelectContent>
                   </Select>
+                  {errors.time && <p className="text-sm text-destructive mt-1">{errors.time}</p>}
                 </div>
               </div>
 
               {/* Hidden Inputs */}
+              <input type="hidden" name="name" value={formData.name} />
+              <input type="hidden" name="email" value={formData.email} />
+              <input type="hidden" name="company" value={formData.company} />
+              <input type="hidden" name="phone" value={formData.phone} />
               <input type="hidden" name="serviceType" value={formData.serviceType} />
               <input type="hidden" name="projectDescription" value={formData.projectDescription} />
               <input type="hidden" name="date" value={formData.date ? format(formData.date, "yyyy-MM-dd") : ""} />
@@ -277,11 +437,13 @@ export function ConsultationScheduler({ isOpen, onClose }: ConsultationScheduler
               <input type="hidden" name="timeline" value={formData.timeline} />
               <input type="hidden" name="_captcha" value="false" />
               <input type="hidden" name="_template" value="table" />
-              <input type="hidden" name="_autoresponse" value="Thanks for scheduling! We’ll get back to you soon." />
+              <input type="hidden" name="_autoresponse" value="Thanks for scheduling! We'll get back to you soon." />
 
               <div className="flex justify-between">
-                <Button type="button" variant="outline" onClick={() => setStep(2)}>Back</Button>
-                <Button type="submit" disabled={!isStep3Valid}>Schedule Consultation</Button>
+                <Button type="button" variant="outline" onClick={handlePreviousStep}>Back</Button>
+                <Button type="submit" disabled={isSubmitting}>
+                  {isSubmitting ? "Scheduling..." : "Schedule Consultation"}
+                </Button>
               </div>
             </div>
           )}

@@ -198,7 +198,7 @@ export default function AIAssistant() {
                   <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></div>
                 </div>
                 <div>
-                  <CardTitle className="text-sm font-semibold">SAVRUDA IN. AI Assistant</CardTitle>
+                  <CardTitle className="text-sm font-semibold">SAVRUDA  AI </CardTitle>
                   <p className="text-xs opacity-90">Online • Ready to help</p>
                 </div>
               </div>
@@ -322,7 +322,7 @@ export default function AIAssistant() {
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    placeholder="Ask me anything about SAVRUDA INNOVATION..."
+                    placeholder="Ask me anything about SAVRUDA IN..."
                     className="flex-1"
                     disabled={isTyping}
                   />
@@ -330,7 +330,7 @@ export default function AIAssistant() {
                     onClick={handleSendMessage}
                     disabled={!inputValue.trim() || isTyping}
                     size="icon"
-                    className="bg-gradient-to-r from-primary to-secondary"
+                    className="bg-gradient-to-r"
                   >
                     <Send className="h-4 w-4" />
                   </Button>

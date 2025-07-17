@@ -10,7 +10,7 @@ const testimonials = [
     title: "CEO, RetailTech Solutions",
     content:
       "TechFlow transformed our entire digital infrastructure. Their expertise in cloud migration and AI integration has given us a competitive edge we never thought possible.",
-    avatar: "/placeholder.svg?height=60&width=60",
+    avatar: "https://res.cloudinary.com/dttagqqne/image/upload/v1752767092/femaleuser_sva0ow.png",
     rating: 5,
   },
   {
@@ -18,7 +18,7 @@ const testimonials = [
     title: "CTO, FinanceForward",
     content:
       "The team's attention to detail and technical prowess is outstanding. They delivered our mobile banking platform ahead of schedule and exceeded all performance expectations.",
-    avatar: "/placeholder.svg?height=60&width=60",
+    avatar: "https://res.cloudinary.com/dttagqqne/image/upload/v1752767109/maleuser_w4qphc.png",
     rating: 5,
   },
   {
@@ -26,7 +26,7 @@ const testimonials = [
     title: "Director of Operations, HealthTech Innovations",
     content:
       "Working with TechFlow has been a game-changer. Their DevOps solutions reduced our deployment time by 80% and significantly improved our system reliability.",
-    avatar: "/placeholder.svg?height=60&width=60",
+    avatar: "https://res.cloudinary.com/dttagqqne/image/upload/v1752767092/femaleuser_sva0ow.png",
     rating: 5,
   },
   {
@@ -34,7 +34,7 @@ const testimonials = [
     title: "Founder, StartupLaunch",
     content:
       "From concept to deployment, TechFlow guided us through every step. Their SaaS consulting expertise helped us build a scalable platform that grows with our business.",
-    avatar: "/placeholder.svg?height=60&width=60",
+    avatar: "https://res.cloudinary.com/dttagqqne/image/upload/v1752767109/maleuser_w4qphc.png",
     rating: 5,
   },
 ]

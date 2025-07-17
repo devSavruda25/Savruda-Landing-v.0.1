@@ -534,7 +534,7 @@ export default function ContactSection() {
                   {/* Embedded Map */}
                   <div className="mt-4 rounded-lg overflow-hidden border">
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.639!2d-122.0574!3d37.4419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb24c7b1b7b7b%3A0x1234567890abcdef!2s123%20Innovation%20Dr%2C%20Palo%20Alto%2C%20CA%2094301!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
+                      src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d788.1558004420443!2d73.75721935745774!3d20.00339613557721!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1752769067542!5m2!1sen!2sin"
                       width="100%"
                       height="200"
                       style={{ border: 0 }}
@@ -550,7 +550,7 @@ export default function ContactSection() {
                   <div className="mt-3 flex gap-2">
                     <Button variant="outline" size="sm" className="flex-1 text-xs" asChild>
                       <a
-                        href="https://www.google.com/maps/search/?api=1&query=123+Innovation+Drive,+Tech+Valley,+CA+94025"
+                        href="https://maps.app.goo.gl/MbsrR98JXFiXCorW7"
                         target="_blank"
                         rel="noopener noreferrer"
                       >

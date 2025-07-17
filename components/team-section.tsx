@@ -8,25 +8,25 @@ const teamMembers = [
   {
     name: "Miss.Rutuja Bafana",
     title: "HR",
-    image: "/placeholder.svg?height=250&width=250",
-    skills: ["React", "Node.js", "AWS"],
+    image: "https://res.cloudinary.com/dttagqqne/image/upload/v1752767092/femaleuser_sva0ow.png",
+    skills: ["Human Resources", "Recruitment", "Employee Relations", "Training and Development"],
   },
   {
     name: "Mr.Prathamesh Devrukhakar",
     title: "Full Stack Developer",
-    image: "/placeholder.svg?height=250&width=250",
+    image: "https://res.cloudinary.com/dttagqqne/image/upload/v1752767109/maleuser_w4qphc.png",
     skills: ["ReactJs", "Node.js", "TypeScript", "Next.js", "Tailwind CSS", "Express.js", "MongoDB", "PostgreSQL", "Docker"],
   },
   {
     name: "Mr.David Kumar",
     title: "UI/UX Designer",
-    image: "/placeholder.svg?height=250&width=250",
+    image: "https://res.cloudinary.com/dttagqqne/image/upload/v1752767109/maleuser_w4qphc.png",
     skills: ["Figma", "Design Systems", "User Research"],
   },
   {
     name: "Miss. Jagruti ",
     title: "Accountant",
-    image: "/placeholder.svg?height=250&width=250",
+    image: "https://res.cloudinary.com/dttagqqne/image/upload/v1752767092/femaleuser_sva0ow.png",
     skills: ["Accounting", "Financial Analysis", "Taxation"],
   },
   
