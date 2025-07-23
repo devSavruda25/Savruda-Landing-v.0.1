@@ -79,7 +79,7 @@ export default function FooterSection() {
               </li>
                <li>
                 <a href="https://ess.emgage.work/login" className="text-muted-foreground hover:text-primary transition-colors">
-                  Employee Desk
+                  MY GROWTH
                 </a>
               </li>
             </ul>
